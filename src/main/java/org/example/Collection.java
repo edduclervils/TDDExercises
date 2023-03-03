@@ -3,6 +3,7 @@ package org.example;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Collection {
     /**
@@ -11,7 +12,9 @@ public class Collection {
      * @return the largest integer
      */
     public static int findMax(List<Integer> numbers) {
-        return -1;
+        TreeSet<Integer> setMakesLifeEasy = new TreeSet<>();
+        setMakesLifeEasy.addAll(numbers);
+        return setMakesLifeEasy.pollLast();
     }
 
     /**
@@ -20,7 +23,9 @@ public class Collection {
      * @return the smallest integer
      */
     public static int findMin(List<Integer> numbers) {
-        return -1;
+        TreeSet<Integer> setMakesLifeEasy = new TreeSet<>();
+        setMakesLifeEasy.addAll(numbers);
+        return setMakesLifeEasy.pollFirst();
     }
 
     /**
@@ -29,7 +34,9 @@ public class Collection {
      * @param target - the threshold by which to remove integers
      */
     public static void removeLessThan(Set<Integer> numbers, int target) {
-
+        TreeSet<Integer> sampleSet = new TreeSet<>();
+        sampleSet.addAll(numbers);
+        numbers.removeAll(sampleSet.headSet(target));
     }
 
     /**
@@ -38,6 +45,10 @@ public class Collection {
      * @param target - the threshold by which to remove integers
      */
     public static void removeGreaterThan(Set<Integer> numbers, int target) {
+        TreeSet<Integer> sampleSet = new TreeSet<>();
+        sampleSet.addAll(numbers);
+
+        numbers.retainAll(sampleSet.headSet(target+1));
 
     }
 
@@ -48,6 +59,11 @@ public class Collection {
      * @param strings - the queue of strings to mutuate
      */
     public static void removeHalf(Queue<String> strings) {
+        int removeLength = (int) java.lang.Math.floor(strings.size()/2);
+        int count = 0;
+        while(strings.size() > removeLength){
+            strings.remove();
+        }
 
     }
 }

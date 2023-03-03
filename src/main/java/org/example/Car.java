@@ -16,7 +16,15 @@ public class Car {
      * return - the amount of miles actually driven
      */
     public int drive(int miles) {
-        return -1;
+        if(mileage*gas >= miles){
+            this.gas = gas - ((double)miles/(double)mileage);
+            return miles;
+        }
+        else {
+            int traveled =(int) (this.mileage*this.gas);
+            this.gas = 0;
+            return  traveled;
+        }
     }
 
     /**
@@ -25,13 +33,13 @@ public class Car {
      * @param gallons the amount of gallons to fill
      */
     public void fill(int gallons) {
-
+        this.gas += gallons;
     }
 
 
     public Car(int mileage, int gas) {
         this.mileage = mileage;
-        this.gas = gas;
+        this.gas = (double) gas;
     }
 
     public int getMileage() {
